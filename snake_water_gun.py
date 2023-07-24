@@ -1,9 +1,11 @@
 import streamlit as st
 import random
+import string
 
 def get_user_choice(user_name):
     """Get user's choice: 'snake', 'water', or 'gun'."""
-    user_choice = st.radio(f"{user_name}, select your choice:", ('snake', 'water', 'gun'), key=f"{user_name}_choice")
+    unique_key = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    user_choice = st.radio(f"{user_name}, select your choice:", ('snake', 'water', 'gun'), key=unique_key)
     return user_choice
 
 def get_computer_choice():
@@ -66,6 +68,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
