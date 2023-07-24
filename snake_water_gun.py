@@ -3,7 +3,7 @@ import random
 
 def get_user_choice():
     """Get user's choice: 'snake', 'water', or 'gun'."""
-    user_choice = st.radio("Select your choice:", ('snake', 'water', 'gun'))
+    user_choice = st.radio("Select your choice:", ('snake', 'water', 'gun'), key="user_choice")
     return user_choice
 
 def get_computer_choice():
@@ -66,4 +66,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
