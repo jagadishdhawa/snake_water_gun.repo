@@ -2,10 +2,10 @@ import streamlit as st
 import random
 import string
 
-def get_user_choice(user_name):
+def get_user_choice(user_name, round_number):
     """Get user's choice: 'snake', 'water', or 'gun'."""
-    unique_key = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
-    user_choice = st.radio(f"{user_name}, select your choice:", ('snake', 'water', 'gun'), key=unique_key)
+    unique_key = f"{user_name}_choice_{round_number}"
+    user_choice = st.radio(f"Round {round_number}: {user_name}, select your choice:", ('snake', 'water', 'gun'), key=unique_key)
     return user_choice
 
 def get_computer_choice():
@@ -35,11 +35,10 @@ def main():
 
     user_wins = 0
     jagadish_wins = 0
-    rounds_played = 0
 
-    while rounds_played < 5:
-        st.write(f"Round {rounds_played + 1}")
-        user_choice = get_user_choice(user_name)
+    for round_number in range(1, 4):  # 3 attempts
+        st.write(f"Round {round_number}")
+        user_choice = get_user_choice(user_name, round_number)
         computer_choice = get_computer_choice()
 
         st.write(f"\n{user_name} chose: {user_choice}")
@@ -52,8 +51,6 @@ def main():
             user_wins += 1
         elif "Jagadish wins" in result:
             jagadish_wins += 1
-
-        rounds_played += 1
 
     st.write("\nGame Over! Final Results:")
     st.write(f"{user_name}: {user_wins} wins")
@@ -68,6 +65,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
