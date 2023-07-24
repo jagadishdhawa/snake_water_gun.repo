@@ -1,9 +1,9 @@
 import streamlit as st
 import random
 
-def get_user_choice():
+def get_user_choice(user_name):
     """Get user's choice: 'snake', 'water', or 'gun'."""
-    user_choice = st.radio("Select your choice:", ('snake', 'water', 'gun'), key="user_choice")
+    user_choice = st.radio(f"{user_name}, select your choice:", ('snake', 'water', 'gun'), key=f"{user_name}_choice")
     return user_choice
 
 def get_computer_choice():
@@ -37,7 +37,7 @@ def main():
 
     while rounds_played < 5:
         st.write(f"Round {rounds_played + 1}")
-        user_choice = get_user_choice()
+        user_choice = get_user_choice(user_name)
         computer_choice = get_computer_choice()
 
         st.write(f"\n{user_name} chose: {user_choice}")
@@ -66,5 +66,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
